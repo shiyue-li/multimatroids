@@ -31,6 +31,11 @@ def valid_M(jump):
     '''given a jump, returns all vector of the same size as the jump, but strictly less than the jump.'''
     ranges = [range(1, i) for i in jump]
     return list(set(cartesian_product(ranges)))
+    
+def is_log_concave(L):
+    '''given a list of numbers, check if log_concave.'''
+    return all(L[i-1]*L[i+1] <= L[i]**2 for i in range(1, len(L)-1))
+
 
 Eulerian(4, 5)
 
