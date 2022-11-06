@@ -1,11 +1,13 @@
+# Author: Shiyue, based on Theorem 4.17 of [CDLR].
+
 import itertools
 
 def Eulerian(r, n):
-    '''given 2 integers r, n, spits out the Betti number of the L^r_n.'''
+    '''given 2 integers r, n, spits out the Betti numbers of the L^r_n.'''
     return [i_Eulerian(i, r, n) for i in range(0, n+1)]
         
 def i_Eulerian(i, r, n):
-    '''computes the i-th r-Eulerian number, as ith Betti number.'''
+    '''computes the i-th r-Eulerian number, as the i-th Betti number.'''
     jumps = valid_jumps(r, n)
     total = binomial(n, i)
     for jump in jumps: 
@@ -19,7 +21,7 @@ def i_Eulerian(i, r, n):
     
     
 def valid_jumps(r, n):
-    '''given 2 integers r, n, give all the allowable jumps.'''
+    '''given 2 integers r, n, gives all the allowable jumps.'''
     result = []
     for l in range(1, n+1): 
         for x in itertools.combinations_with_replacement(range(2, n+1), l):
@@ -33,7 +35,7 @@ def valid_M(jump):
     return list(set(cartesian_product(ranges)))
     
 def is_log_concave(L):
-    '''given a list of numbers, check if log_concave.'''
+    '''given a list of numbers, checks if log_concave.'''
     return all(L[i-1]*L[i+1] <= L[i]**2 for i in range(1, len(L)-1))
 
 
