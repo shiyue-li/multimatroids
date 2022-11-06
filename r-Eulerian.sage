@@ -9,7 +9,6 @@ def i_Eulerian(i, r, n):
     '''computes the i-th r-Eulerian number, as ith Betti number.'''
     
     
-    
 def valid_jumps(r, n):
     '''given 2 integers r, n, give all the allowable jumps.'''
     result = []
@@ -21,8 +20,6 @@ def valid_jumps(r, n):
 
 def valid_M(jump):
     '''given a jump, returns all vector of the same size as the jump, but strictly less than the jump.'''
-    result = []
-    length = len(jump)
     ranges = [[1, i-1] for i in jump]
     return list(set(cartesian_product(ranges)))
     
