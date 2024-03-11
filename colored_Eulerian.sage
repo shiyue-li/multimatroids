@@ -8,7 +8,7 @@ R = PolynomialRing(ZZ, 'x')
 def excedance_poly(r, n):
     E = 0
     for i in range(n):
-        f = (n*i + 1)^r*x^i
+        f = (n*i + 1)^r*x^i # there may be an issue here because I don't know the degree of the polynomial here. 
         E += f
     
     E *= (1-x)^(r+1)
