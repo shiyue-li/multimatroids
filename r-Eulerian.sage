@@ -1,7 +1,8 @@
-# Author: Shiyue, based on Theorem 4.17 of [CDLR].
+# Author: Shiyue, based on Theorem 4.13 of [CDLR]: 
+# https://www.cambridge.org/core/services/aop-cambridge-core/content/view/0811738BEDE71A067CB7876742615252/S2050509423000269a.pdf/wonderful-compactifications-and-rational-curves-with-cyclic-action.pdf
 
 import itertools
-t = var('t')
+R.<t> = PolynomialRing(ZZ)
 
 
 def eulerian(r, n):
@@ -20,7 +21,8 @@ def i_eulerian(i, r, n):
         smaller_jumps = valid_mu(jump)
         dim = 0
         for mu in smaller_jumps: 
-            dim += binomial(n-sum(jump), i-sum(mu))
+            if (i - sum(mu)) >= 0:
+                dim += binomial(n-sum(jump), i-sum(mu))
         total += mult * dim
     return int(total)    
     
@@ -49,7 +51,6 @@ def ordered_sequences(n, l):
        - treats permutations, e.g. (2,3) and (3,2), as distinct
     """
     result = []
-    # Generate sequences of specific length
     for seq in itertools.product(range(2, n+1), repeat=l):
         if sum(seq) <= n:
             result.append(seq)
@@ -73,12 +74,12 @@ def multi_eulerian(r, n):
     '''given 2 integers r, n, returns the Hilbert series of the L^r_n.'''
     return sum([eulerian(r, n)[i]*t^i for i in range(0, n+1)])
 
-
-
-for r in range(2, 3):
-    for n in range(r+4, r+10):
+# Example use 
+for r in range(2, 5):
+    for n in range(r+1, r+5):
+        poly = multi_eulerian(r, n)
         print(f"{r, n}-Eulerian: {multi_eulerian(r, n)}")
-        print(f"type B Eulerian: {type_B_eulerian(n+1)}")
+        print(f'real-rooted: {poly.is_real_rooted()}')
         print()
 
         
