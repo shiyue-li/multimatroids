@@ -75,10 +75,10 @@ def multi_eulerian(r, n):
     return sum([eulerian(r, n)[i]*t^i for i in range(0, n+1)])
 
 # Example use 
-for r in range(2, 5):
-    for n in range(r+1, r+5):
+for r in range(2, 3):
+    for n in range(r+6, r+8):
         poly = multi_eulerian(r, n)
-        print(f"{r, n}-Eulerian: {multi_eulerian(r, n)}")
+        print(f"{r, n}-Eulerian: {eulerian(r, n)}")
         print(f'real-rooted: {poly.is_real_rooted()}')
         print()
 

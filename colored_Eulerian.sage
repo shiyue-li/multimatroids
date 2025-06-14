@@ -3,7 +3,6 @@
 # The formula of excedance polynomial is by Theorem 17 of https://www.sciencedirect.com/science/article/pii/S0195669884710213?ref=cra_js_challenge&fr=RR-1. 
 
 
-
 R = PolynomialRing(ZZ, 'x')
 def excedance_poly(r, n):
     E = 0
